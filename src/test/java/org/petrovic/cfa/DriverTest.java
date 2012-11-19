@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -49,21 +50,26 @@ public class DriverTest {
         assertEquals(1 + 1, classFileReports.size());
 
         for (ClassViz s : classFileReports) {
-            // Commons-IO 2.4.0 binary class file
-            if (s.getClassName().equals("org/apache/commons/io/filefilter/DirectoryFileFilter")) {
-                Collection<Variable> fields = s.getFields();
-                assertEquals(2, fields.size());
+            Map<Method, List<Variable>> methodLocalMap = s.getMethodLocalMap();
+            Collection<Variable> fields = s.getFields();
+            Set<Method> methods = methodLocalMap.keySet();
+            for (Method m : methods) {
+                List<Variable> variables = methodLocalMap.get(m);
+                assertEquals("Method should have no object locals not in the JDK", 0, variables.size());
+            }
 
-                Map<Method, List<Variable>> methodLocalMap = s.getMethodLocalMap();
+            if (s.getClassName().equals("org/apache/commons/io/filefilter/DirectoryFileFilter")) {
+                assertEquals(2, fields.size());
                 assertEquals(3, methodLocalMap.size());
                 Object[] objects = fields.toArray();
                 Variable v = (Variable) objects[0];
                 assertEquals(v.type, "org/apache/commons/io/filefilter/IOFileFilter");
-
-                Method accept = new Method("accept", "(Ljava/io/File;)Z");
-                List<Variable> variables = methodLocalMap.get(accept);
-                assertEquals(0, variables.size());
-
+            }
+            if (s.getClassName().equals("org.apache.commons.io.output.BrokenOutputStream")) {
+                assertEquals(1, fields.size());
+                Object[] o = fields.toArray();
+                Variable v = (Variable) o[0];
+                assertEquals(v.type, "java/io/IOException");
             }
         }
     }
