@@ -34,7 +34,7 @@ uploadArchives {
     repositories.mavenDeployer {
         name = 'artifactory-http'
         pom.groupId = "org.petrovic"
-        pom.artifactId = "class-analyzer"
+        pom.artifactId = "classfile-analyzer"
         pom.version = version
         configuration = configurations.deployerJars
         repository(url: "http://ae6rt.artifactoryonline.com/ae6rt/release") {
