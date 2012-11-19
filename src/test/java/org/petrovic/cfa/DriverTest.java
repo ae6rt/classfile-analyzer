@@ -53,10 +53,17 @@ public class DriverTest {
             if (s.getClassName().equals("org/apache/commons/io/filefilter/DirectoryFileFilter")) {
                 Collection<Variable> fields = s.getFields();
                 assertEquals(2, fields.size());
-                assertEquals(3, s.getMethodLocalMap().size());
+
+                Map<Method, List<Variable>> methodLocalMap = s.getMethodLocalMap();
+                assertEquals(3, methodLocalMap.size());
                 Object[] objects = fields.toArray();
                 Variable v = (Variable) objects[0];
                 assertEquals(v.type, "org/apache/commons/io/filefilter/IOFileFilter");
+
+                Method accept = new Method("accept", "(Ljava/io/File;)Z");
+                List<Variable> variables = methodLocalMap.get(accept);
+                assertEquals(0, variables.size());
+
             }
         }
     }
