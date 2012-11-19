@@ -4,6 +4,7 @@ public class TypeUtility {
 
     private static final String LEFT_BRACKET = "[";
     private static final String SEMICOLON = ";";
+    private static final String L = "L";
 
     enum BaseType {
         B, C, D, F, I, J, S, Z
@@ -28,5 +29,9 @@ public class TypeUtility {
 
     public static String normalize(String objectType) {
         return objectType.substring(isArray(objectType) ? objectType.lastIndexOf(LEFT_BRACKET) + 2 : 1, objectType.length() - 1);
+    }
+
+    public static String toObjectReference(String reference) {
+        return new StringBuilder(L).append(reference).append(SEMICOLON).toString();
     }
 }

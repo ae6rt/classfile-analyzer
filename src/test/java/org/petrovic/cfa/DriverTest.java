@@ -59,13 +59,14 @@ public class DriverTest {
             }
 
             if (s.getClassName().equals("org/apache/commons/io/filefilter/DirectoryFileFilter")) {
+                assertEquals(3, methods.size());
                 assertEquals(2, fields.size());
-                assertEquals(3, methodLocalMap.size());
-                Object[] objects = fields.toArray();
-                Variable v = (Variable) objects[0];
-                assertEquals(v.type, "org/apache/commons/io/filefilter/IOFileFilter");
+                for (Variable v : fields) {
+                    assertEquals("org/apache/commons/io/filefilter/IOFileFilter", v.type);
+                }
             }
             if (s.getClassName().equals("org.apache.commons.io.output.BrokenOutputStream")) {
+                assertEquals(5, methods.size());
                 assertEquals(1, fields.size());
                 Object[] o = fields.toArray();
                 Variable v = (Variable) o[0];
