@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class DriverTest {
     private File main;
@@ -59,18 +60,22 @@ public class DriverTest {
             }
 
             if (s.getClassName().equals("org/apache/commons/io/filefilter/DirectoryFileFilter")) {
+                assertEquals("org/apache/commons/io/filefilter/AbstractFileFilter", TypeUtility.normalize(s.getSuperName()));
+                assertEquals(0, s.getImplementedInterfaces().size());
                 assertEquals(3, methods.size());
                 assertEquals(2, fields.size());
                 for (Variable v : fields) {
                     assertEquals("org/apache/commons/io/filefilter/IOFileFilter", v.type);
                 }
             }
-            if (s.getClassName().equals("org.apache.commons.io.output.BrokenOutputStream")) {
+            if (s.getClassName().equals("org/apache/commons/io/output/BrokenOutputStream")) {
+                assertNull(s.getSuperName());
+                assertEquals(0, s.getImplementedInterfaces().size());
+                assertEquals(0, fields.size());
                 assertEquals(5, methods.size());
-                assertEquals(1, fields.size());
-                Object[] o = fields.toArray();
-                Variable v = (Variable) o[0];
-                assertEquals(v.type, "java/io/IOException");
+                assertEquals(0, s.getMethodExceptionsMap().get(new Method("write", "(I)V")).size());
+                assertEquals(0, s.getMethodExceptionsMap().get(new Method("flush", "()V")).size());
+                assertEquals(0, s.getMethodExceptionsMap().get(new Method("close", "()V")).size());
             }
         }
     }

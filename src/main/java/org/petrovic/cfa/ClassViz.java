@@ -14,10 +14,12 @@ import java.util.Map;
 
 public class ClassViz extends EmptyVisitor {
     private String className;
+    private String superName;
     private final File backingFile;
     private List<Variable> fields = new LinkedList<Variable>();
     private Map<Method, List<Variable>> methodLocalMap = new HashMap<Method, List<Variable>>();
     private Map<Method, List<Variable>> methodExceptionsMap = new HashMap<Method, List<Variable>>();
+    private List<Interface> implementedInterfaces = new LinkedList<Interface>();
 
     public ClassViz(File backingFile) {
         this.backingFile = backingFile;
@@ -26,6 +28,16 @@ public class ClassViz extends EmptyVisitor {
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         className = name;
+        if (!TypeUtility.omit(TypeUtility.toObjectReference(superName))) {
+            this.superName = TypeUtility.toObjectReference(superName);
+        }
+        if (interfaces != null) {
+            for (String s : interfaces) {
+                if (!TypeUtility.omit(TypeUtility.toObjectReference(s))) {
+                    implementedInterfaces.add(new Interface(s));
+                }
+            }
+        }
     }
 
     @Override
@@ -38,11 +50,7 @@ public class ClassViz extends EmptyVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-        if (exceptions != null)
-            System.out.printf("class=%s:method=%s, desc=%s, exceptions=%s\n", className,
-                    name, desc, list(exceptions));
         Method key = new Method(name, desc);
-
         List<Variable> methodExceptions = methodExceptionsMap.get(key);
         if (methodExceptions == null) {
             methodExceptions = new LinkedList<Variable>();
@@ -55,13 +63,11 @@ public class ClassViz extends EmptyVisitor {
                 }
             }
         }
-
         List<Variable> methodLocalVariables = methodLocalMap.get(key);
         if (methodLocalVariables == null) {
             methodLocalVariables = new LinkedList<Variable>();
             methodLocalMap.put(key, methodLocalVariables);
         }
-
         return new MethodViz(methodLocalVariables);
     }
 
@@ -86,15 +92,26 @@ public class ClassViz extends EmptyVisitor {
         return Collections.unmodifiableMap(methodLocalMap);
     }
 
+    public Map<Method, List<Variable>> getMethodExceptionsMap() {
+        return Collections.unmodifiableMap(methodExceptionsMap);
+    }
+
+    public List<Interface> getImplementedInterfaces() {
+        return Collections.unmodifiableList(implementedInterfaces);
+    }
+
+    public String getSuperName() {
+        return superName;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append("ClassViz");
-        sb.append("{type='").append(className).append('\'');
-        sb.append(", backingFile=").append(backingFile);
-        sb.append(", fields=").append(fields);
-        sb.append(", methodLocalMap=").append(methodLocalMap);
-        sb.append('}');
-        return sb.toString();
+        return "ClassViz{" +
+                "className='" + className + '\'' +
+                ", backingFile=" + backingFile +
+                ", fields=" + fields +
+                ", methodLocalMap=" + methodLocalMap +
+                ", methodExceptionsMap=" + methodExceptionsMap +
+                '}';
     }
 }
