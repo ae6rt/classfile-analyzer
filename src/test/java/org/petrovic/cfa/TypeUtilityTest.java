@@ -58,4 +58,9 @@ public class TypeUtilityTest {
         assertEquals(type, TypeUtility.normalize(arrayOfObject));
         assertEquals(type, TypeUtility.normalize(array2OfObject));
     }
+
+    @Test
+    public void testToObjectReference() {
+        assertEquals(String.format("L%s;", type), TypeUtility.toObjectReference(type));
+    }
 }

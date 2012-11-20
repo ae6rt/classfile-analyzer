@@ -1,0 +1,387 @@
+:clean
+:compileJava
+:processResources UP-TO-DATE
+:classes
+:jar
+:assemble
+:pmdMain
+:pmdTest
+:compileTestJava
+:processTestResources UP-TO-DATE
+:testClasses
+:test
+
+org.petrovic.cfa.DriverTest > traceTest STANDARD_OUT
+    // class version 50.0 (50)
+    // access flags 0x21
+    public class org/apache/commons/io/output/BrokenOutputStream extends java/io/OutputStream  {
+
+      // compiled from: BrokenOutputStream.java
+
+      // access flags 0x12
+      private final Ljava/io/IOException; exception
+
+      // access flags 0x1
+      public <init>(Ljava/io/IOException;)V
+       L0
+        LINENUMBER 43 L0
+        ALOAD 0
+        INVOKESPECIAL java/io/OutputStream.<init> ()V
+       L1
+        LINENUMBER 44 L1
+        ALOAD 0
+        ALOAD 1
+        PUTFIELD org/apache/commons/io/output/BrokenOutputStream.exception : Ljava/io/IOException;
+       L2
+        LINENUMBER 45 L2
+        RETURN
+       L3
+        LOCALVARIABLE this Lorg/apache/commons/io/output/BrokenOutputStream; L0 L3 0
+        LOCALVARIABLE exception Ljava/io/IOException; L0 L3 1
+        MAXSTACK = 2
+        MAXLOCALS = 2
+
+      // access flags 0x1
+      public <init>()V
+       L0
+        LINENUMBER 51 L0
+        ALOAD 0
+        NEW java/io/IOException
+        DUP
+        LDC "Broken output stream"
+        INVOKESPECIAL java/io/IOException.<init> (Ljava/lang/String;)V
+        INVOKESPECIAL org/apache/commons/io/output/BrokenOutputStream.<init> (Ljava/io/IOException;)V
+       L1
+        LINENUMBER 52 L1
+        RETURN
+       L2
+        LOCALVARIABLE this Lorg/apache/commons/io/output/BrokenOutputStream; L0 L2 0
+        MAXSTACK = 4
+        MAXLOCALS = 1
+
+      // access flags 0x1
+      public write(I)V throws java/io/IOException 
+       L0
+        LINENUMBER 62 L0
+        ALOAD 0
+        GETFIELD org/apache/commons/io/output/BrokenOutputStream.exception : Ljava/io/IOException;
+        ATHROW
+       L1
+        LOCALVARIABLE this Lorg/apache/commons/io/output/BrokenOutputStream; L0 L1 0
+        LOCALVARIABLE b I L0 L1 1
+        MAXSTACK = 1
+        MAXLOCALS = 2
+
+      // access flags 0x1
+      public flush()V throws java/io/IOException 
+       L0
+        LINENUMBER 72 L0
+        ALOAD 0
+        GETFIELD org/apache/commons/io/output/BrokenOutputStream.exception : Ljava/io/IOException;
+        ATHROW
+       L1
+        LOCALVARIABLE this Lorg/apache/commons/io/output/BrokenOutputStream; L0 L1 0
+        MAXSTACK = 1
+        MAXLOCALS = 1
+
+      // access flags 0x1
+      public close()V throws java/io/IOException 
+       L0
+        LINENUMBER 82 L0
+        ALOAD 0
+        GETFIELD org/apache/commons/io/output/BrokenOutputStream.exception : Ljava/io/IOException;
+        ATHROW
+       L1
+        LOCALVARIABLE this Lorg/apache/commons/io/output/BrokenOutputStream; L0 L1 0
+        MAXSTACK = 1
+        MAXLOCALS = 1
+    }
+    // class version 50.0 (50)
+    // access flags 0x20
+    class cucumber/runtime/java/JavaStepDefinition implements cucumber/runtime/StepDefinition  {
+
+      // compiled from: JavaStepDefinition.java
+
+      // access flags 0x12
+      private final Ljava/lang/reflect/Method; method
+
+      // access flags 0x12
+      private final Ljava/util/regex/Pattern; pattern
+
+      // access flags 0x12
+      private final I timeout
+
+      // access flags 0x12
+      private final Lcucumber/runtime/JdkPatternArgumentMatcher; argumentMatcher
+
+      // access flags 0x12
+      private final Lcucumber/runtime/java/ObjectFactory; objectFactory
+
+      // access flags 0x2
+      // signature Ljava/util/List<Lcucumber/runtime/ParameterType;>;
+      // declaration: java.util.List<cucumber.runtime.ParameterType>
+      private Ljava/util/List; parameterTypes
+
+      // access flags 0x1
+      public <init>(Ljava/lang/reflect/Method;Ljava/util/regex/Pattern;ILcucumber/runtime/java/ObjectFactory;)V
+       L0
+        LINENUMBER 25 L0
+        ALOAD 0
+        INVOKESPECIAL java/lang/Object.<init> ()V
+       L1
+        LINENUMBER 26 L1
+        ALOAD 0
+        ALOAD 1
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+       L2
+        LINENUMBER 27 L2
+        ALOAD 0
+        ALOAD 1
+        INVOKESTATIC cucumber/runtime/ParameterType.fromMethod (Ljava/lang/reflect/Method;)Ljava/util/List;
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.parameterTypes : Ljava/util/List;
+       L3
+        LINENUMBER 28 L3
+        ALOAD 0
+        ALOAD 2
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.pattern : Ljava/util/regex/Pattern;
+       L4
+        LINENUMBER 29 L4
+        ALOAD 0
+        NEW cucumber/runtime/JdkPatternArgumentMatcher
+        DUP
+        ALOAD 2
+        INVOKESPECIAL cucumber/runtime/JdkPatternArgumentMatcher.<init> (Ljava/util/regex/Pattern;)V
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.argumentMatcher : Lcucumber/runtime/JdkPatternArgumentMatcher;
+       L5
+        LINENUMBER 30 L5
+        ALOAD 0
+        ILOAD 3
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.timeout : I
+       L6
+        LINENUMBER 31 L6
+        ALOAD 0
+        ALOAD 4
+        PUTFIELD cucumber/runtime/java/JavaStepDefinition.objectFactory : Lcucumber/runtime/java/ObjectFactory;
+       L7
+        LINENUMBER 32 L7
+        RETURN
+       L8
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L8 0
+        LOCALVARIABLE method Ljava/lang/reflect/Method; L0 L8 1
+        LOCALVARIABLE pattern Ljava/util/regex/Pattern; L0 L8 2
+        LOCALVARIABLE timeout I L0 L8 3
+        LOCALVARIABLE objectFactory Lcucumber/runtime/java/ObjectFactory; L0 L8 4
+        MAXSTACK = 4
+        MAXLOCALS = 5
+
+      // access flags 0x1
+      public execute(Lgherkin/I18n;[Ljava/lang/Object;)V throws java/lang/Throwable 
+       L0
+        LINENUMBER 35 L0
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.objectFactory : Lcucumber/runtime/java/ObjectFactory;
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+        INVOKEVIRTUAL java/lang/reflect/Method.getDeclaringClass ()Ljava/lang/Class;
+        INVOKEINTERFACE cucumber/runtime/java/ObjectFactory.getInstance (Ljava/lang/Class;)Ljava/lang/Object;
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.timeout : I
+        ALOAD 2
+        INVOKESTATIC cucumber/runtime/Utils.invoke (Ljava/lang/Object;Ljava/lang/reflect/Method;I[Ljava/lang/Object;)Ljava/lang/Object;
+        POP
+       L1
+        LINENUMBER 36 L1
+        RETURN
+       L2
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L2 0
+        LOCALVARIABLE i18n Lgherkin/I18n; L0 L2 1
+        LOCALVARIABLE args [Ljava/lang/Object; L0 L2 2
+        MAXSTACK = 4
+        MAXLOCALS = 3
+
+      // access flags 0x1
+      // signature (Lgherkin/formatter/model/Step;)Ljava/util/List<Lgherkin/formatter/Argument;>;
+      // declaration: java.util.List<gherkin.formatter.Argument> matchedArguments(gherkin.formatter.model.Step)
+      public matchedArguments(Lgherkin/formatter/model/Step;)Ljava/util/List;
+       L0
+        LINENUMBER 39 L0
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.argumentMatcher : Lcucumber/runtime/JdkPatternArgumentMatcher;
+        ALOAD 1
+        INVOKEVIRTUAL gherkin/formatter/model/Step.getName ()Ljava/lang/String;
+        INVOKEVIRTUAL cucumber/runtime/JdkPatternArgumentMatcher.argumentsFrom (Ljava/lang/String;)Ljava/util/List;
+        ARETURN
+       L1
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L1 0
+        LOCALVARIABLE step Lgherkin/formatter/model/Step; L0 L1 1
+        MAXSTACK = 2
+        MAXLOCALS = 2
+
+      // access flags 0x1
+      public getLocation(Z)Ljava/lang/String;
+       L0
+        LINENUMBER 43 L0
+        ILOAD 1
+        IFEQ L1
+        GETSTATIC cucumber/runtime/MethodFormat.FULL : Lcucumber/runtime/MethodFormat;
+        GOTO L2
+       L1
+       FRAME FULL [cucumber/runtime/java/JavaStepDefinition I] []
+        GETSTATIC cucumber/runtime/MethodFormat.SHORT : Lcucumber/runtime/MethodFormat;
+       L2
+       FRAME FULL [cucumber/runtime/java/JavaStepDefinition I] [cucumber/runtime/MethodFormat]
+        ASTORE 2
+       L3
+        LINENUMBER 44 L3
+        ALOAD 2
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+        INVOKEVIRTUAL cucumber/runtime/MethodFormat.format (Ljava/lang/reflect/Method;)Ljava/lang/String;
+        ARETURN
+       L4
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L4 0
+        LOCALVARIABLE detail Z L0 L4 1
+        LOCALVARIABLE format Lcucumber/runtime/MethodFormat; L3 L4 2
+        MAXSTACK = 2
+        MAXLOCALS = 3
+
+      // access flags 0x1
+      public getParameterCount()Ljava/lang/Integer;
+       L0
+        LINENUMBER 49 L0
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.parameterTypes : Ljava/util/List;
+        INVOKEINTERFACE java/util/List.size ()I
+        INVOKESTATIC java/lang/Integer.valueOf (I)Ljava/lang/Integer;
+        ARETURN
+       L1
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L1 0
+        MAXSTACK = 1
+        MAXLOCALS = 1
+
+      // access flags 0x1
+      public getParameterType(ILjava/lang/reflect/Type;)Lcucumber/runtime/ParameterType;
+       L0
+        LINENUMBER 54 L0
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.parameterTypes : Ljava/util/List;
+        ILOAD 1
+        INVOKEINTERFACE java/util/List.get (I)Ljava/lang/Object;
+        CHECKCAST cucumber/runtime/ParameterType
+        ARETURN
+       L1
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L1 0
+        LOCALVARIABLE n I L0 L1 1
+        LOCALVARIABLE argumentType Ljava/lang/reflect/Type; L0 L1 2
+        MAXSTACK = 2
+        MAXLOCALS = 3
+
+      // access flags 0x1
+      public isDefinedAt(Ljava/lang/StackTraceElement;)Z
+       L0
+        LINENUMBER 58 L0
+        ALOAD 1
+        INVOKEVIRTUAL java/lang/StackTraceElement.getClassName ()Ljava/lang/String;
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+        INVOKEVIRTUAL java/lang/reflect/Method.getDeclaringClass ()Ljava/lang/Class;
+        INVOKEVIRTUAL java/lang/Class.getName ()Ljava/lang/String;
+        INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+        IFEQ L1
+        ALOAD 1
+        INVOKEVIRTUAL java/lang/StackTraceElement.getMethodName ()Ljava/lang/String;
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.method : Ljava/lang/reflect/Method;
+        INVOKEVIRTUAL java/lang/reflect/Method.getName ()Ljava/lang/String;
+        INVOKEVIRTUAL java/lang/String.equals (Ljava/lang/Object;)Z
+        IFEQ L1
+        ICONST_1
+        GOTO L2
+       L1
+       FRAME FULL [cucumber/runtime/java/JavaStepDefinition java/lang/StackTraceElement] []
+        ICONST_0
+       L2
+       FRAME FULL [cucumber/runtime/java/JavaStepDefinition java/lang/StackTraceElement] [I]
+        IRETURN
+       L3
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L3 0
+        LOCALVARIABLE e Ljava/lang/StackTraceElement; L0 L3 1
+        MAXSTACK = 2
+        MAXLOCALS = 2
+
+      // access flags 0x1
+      public getPattern()Ljava/lang/String;
+       L0
+        LINENUMBER 63 L0
+        ALOAD 0
+        GETFIELD cucumber/runtime/java/JavaStepDefinition.pattern : Ljava/util/regex/Pattern;
+        INVOKEVIRTUAL java/util/regex/Pattern.pattern ()Ljava/lang/String;
+        ARETURN
+       L1
+        LOCALVARIABLE this Lcucumber/runtime/java/JavaStepDefinition; L0 L1 0
+        MAXSTACK = 1
+        MAXLOCALS = 1
+    }
+    // class version 50.0 (50)
+    // access flags 0x21
+    public class org/apache/commons/io/filefilter/DirectoryFileFilter extends org/apache/commons/io/filefilter/AbstractFileFilter  implements java/io/Serializable  {
+
+      // compiled from: DirectoryFileFilter.java
+
+      // access flags 0x19
+      public final static Lorg/apache/commons/io/filefilter/IOFileFilter; DIRECTORY
+
+      // access flags 0x19
+      public final static Lorg/apache/commons/io/filefilter/IOFileFilter; INSTANCE
+
+      // access flags 0x4
+      protected <init>()V
+       L0
+        LINENUMBER 59 L0
+        ALOAD 0
+        INVOKESPECIAL org/apache/commons/io/filefilter/AbstractFileFilter.<init> ()V
+       L1
+        LINENUMBER 60 L1
+        RETURN
+       L2
+        LOCALVARIABLE this Lorg/apache/commons/io/filefilter/DirectoryFileFilter; L0 L2 0
+        MAXSTACK = 1
+        MAXLOCALS = 1
+
+      // access flags 0x1
+      public accept(Ljava/io/File;)Z
+       L0
+        LINENUMBER 70 L0
+        ALOAD 1
+        INVOKEVIRTUAL java/io/File.isDirectory ()Z
+        IRETURN
+       L1
+        LOCALVARIABLE this Lorg/apache/commons/io/filefilter/DirectoryFileFilter; L0 L1 0
+        LOCALVARIABLE file Ljava/io/File; L0 L1 1
+        MAXSTACK = 1
+        MAXLOCALS = 2
+
+      // access flags 0x8
+      static <clinit>()V
+       L0
+        LINENUMBER 47 L0
+        NEW org/apache/commons/io/filefilter/DirectoryFileFilter
+        DUP
+        INVOKESPECIAL org/apache/commons/io/filefilter/DirectoryFileFilter.<init> ()V
+        PUTSTATIC org/apache/commons/io/filefilter/DirectoryFileFilter.DIRECTORY : Lorg/apache/commons/io/filefilter/IOFileFilter;
+       L1
+        LINENUMBER 54 L1
+        GETSTATIC org/apache/commons/io/filefilter/DirectoryFileFilter.DIRECTORY : Lorg/apache/commons/io/filefilter/IOFileFilter;
+        PUTSTATIC org/apache/commons/io/filefilter/DirectoryFileFilter.INSTANCE : Lorg/apache/commons/io/filefilter/IOFileFilter;
+        RETURN
+        MAXSTACK = 2
+        MAXLOCALS = 0
+    }
+:check
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 3.947 secs

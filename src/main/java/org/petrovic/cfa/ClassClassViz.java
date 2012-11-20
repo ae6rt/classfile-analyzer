@@ -2,7 +2,7 @@ package org.petrovic.cfa;
 
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.commons.EmptyVisitor;
+import org.petrovic.cfa.asm.EmptyClassViz;
 
 import java.io.File;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class ClassViz extends EmptyVisitor {
+public class ClassClassViz extends EmptyClassViz {
     private String className;
     private String superName;
     private final File backingFile;
@@ -21,7 +21,7 @@ public class ClassViz extends EmptyVisitor {
     private Map<Method, List<Variable>> methodExceptionsMap = new HashMap<Method, List<Variable>>();
     private List<Interface> implementedInterfaces = new LinkedList<Interface>();
 
-    public ClassViz(File backingFile) {
+    public ClassClassViz(File backingFile) {
         this.backingFile = backingFile;
     }
 
@@ -68,7 +68,7 @@ public class ClassViz extends EmptyVisitor {
             methodLocalVariables = new LinkedList<Variable>();
             methodLocalMap.put(key, methodLocalVariables);
         }
-        return new MethodViz(methodLocalVariables);
+        return new MethodClassViz(methodLocalVariables);
     }
 
     private String list(String[] exceptions) {
@@ -106,7 +106,7 @@ public class ClassViz extends EmptyVisitor {
 
     @Override
     public String toString() {
-        return "ClassViz{" +
+        return "ClassClassViz{" +
                 "className='" + className + '\'' +
                 ", backingFile=" + backingFile +
                 ", fields=" + fields +

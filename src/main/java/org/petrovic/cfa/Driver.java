@@ -3,10 +3,12 @@ package org.petrovic.cfa;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.util.TraceClassVisitor;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -64,16 +66,24 @@ public class Driver {
      * @return Collection of ClassFileReport
      * @throws IOException
      */
-    public Collection<ClassViz> analyze() throws IOException {
-        Collection<ClassViz> reports = new LinkedList<ClassViz>();
+    public Collection<ClassClassViz> analyze(Boolean debug) throws IOException {
+        Collection<ClassClassViz> reports = new LinkedList<ClassClassViz>();
         for (File dir : scanFiles.keySet()) {
             for (File classFile : scanFiles.get(dir)) {
                 ClassReader classReader = new ClassReader(new FileInputStream(classFile));
-                ClassViz classViz = new ClassViz(classFile);
-                classReader.accept(classViz, ClassReader.EXPAND_FRAMES);
-                reports.add(classViz);
+                if (debug) {
+                    TraceClassVisitor traceClassVisitor = new TraceClassVisitor(new PrintWriter(System.out));
+                    classReader.accept(traceClassVisitor, ClassReader.EXPAND_FRAMES);
+                } else {
+                    ClassClassViz classViz = new ClassClassViz(classFile);
+                    reports.add(classViz);
+                }
             }
         }
         return reports;
+    }
+
+    public Collection<ClassClassViz> analyze() throws IOException {
+        return analyze(Boolean.FALSE);
     }
 }

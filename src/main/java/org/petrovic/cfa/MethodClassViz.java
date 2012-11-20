@@ -1,15 +1,16 @@
 package org.petrovic.cfa;
 
 import org.objectweb.asm.Label;
-import org.objectweb.asm.commons.EmptyVisitor;
+import org.petrovic.cfa.asm.EmptyMethodViz;
 
 import java.util.List;
 
-public class MethodViz extends EmptyVisitor {
+public class MethodClassViz extends EmptyMethodViz {
 
     private final List<Variable> localVariables;
 
-    public MethodViz(List<Variable> variableList) {
+    public MethodClassViz(List<Variable> variableList) {
+        super(4);
         this.localVariables = variableList;
     }
 

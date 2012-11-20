@@ -1,24 +1,29 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'pmd'
 apply from: 'deploy.gradle'
 
-project.ext.asmVersion = "3.3.1"
-project.ext.commonsIOVersion = "2.4"
 version = "1.0"
+
+ext.versions = [
+        asm: "4.1",
+]
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile group: 'asm', name: 'asm', version: asmVersion
-    compile group: 'asm', name: 'asm-util', version: asmVersion
-    compile group: 'asm', name: 'asm-commons', version: asmVersion
-    compile group: 'commons-io', name: 'commons-io', version: commonsIOVersion
+    compile group: 'org.ow2.asm', name: 'asm', version: versions.asm
+    compile group: 'org.ow2.asm', name: 'asm-commons', version: versions.asm
+    compile group: 'org.ow2.asm', name: 'asm-util', version: versions.asm
+    compile group: 'commons-io', name: 'commons-io', version: "2.4"
     testCompile group: 'junit', name: 'junit', version: '4.10'
 }
 
 test {
+    def traceDebug = "traceDebug"
+    systemProperty traceDebug, System.getProperty(traceDebug)
     testLogging.showStandardStreams = true
 }
 
@@ -37,8 +42,24 @@ uploadArchives {
         pom.artifactId = "classfile-analyzer"
         pom.version = version
         configuration = configurations.deployerJars
+        repository(url: uri('///Users/petrovic/.gradleRepository'))
+    }
+}
+
+task hello << {
+    println tasks.check.properties.pmdExtension
+}
+/*
+uploadArchives {
+    repositories.mavenDeployer {
+        name = 'artifactory-http'
+        pom.groupId = "org.petrovic"
+        pom.artifactId = "classfile-analyzer"
+        pom.version = version
+        configuration = configurations.deployerJars
         repository(url: "http://ae6rt.artifactoryonline.com/ae6rt/release") {
             authentication(userName: deploy.user, password: deploy.password)
         }
     }
 }
+*/
